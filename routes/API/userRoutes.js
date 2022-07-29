@@ -1,0 +1,15 @@
+const express = require("express");
+const userRoutes = express.Router();
+const userController = require("../../controllers/user");
+const auth = require("../../middleware/auth");
+
+userRoutes.post("/login", userController.login);
+userRoutes.post("/logout", userController.logout);
+userRoutes.post("/register", userController.register);
+userRoutes.put(
+  "/editInformasiAkun",
+  auth.checkLogin,
+  userController.editInformasiAkun
+);
+
+module.exports = userRoutes;
