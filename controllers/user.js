@@ -19,7 +19,7 @@ module.exports.login = async function (req, res) {
         res.cookie("jwt", token, {
           maxAge: 60 * 60 * 1000,
           httpOnly: true,
-          secure: false,
+          secure: true,
           sameSite: "none",
         });
         return res.status(200).json({
