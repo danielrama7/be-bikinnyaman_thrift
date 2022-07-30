@@ -152,3 +152,37 @@ module.exports.register = async function (req, res) {
     });
   }
 };
+
+module.exports.getUserDetail = async function (req, res) {
+  try {
+    const userData = await db.user.findByPk(req.params.id, {
+      attributes: [
+        "namaLengkap",
+        "email",
+        "alamat",
+        "provinsi",
+        "kabupatenKota",
+        "kecamatan",
+        "kelurahan",
+        "kodePos",
+        "noTelp",
+      ],
+    });
+    if (!userData) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    return res.status(200).json({
+      sucess: true,
+      data: userData,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      sucess: false,
+      error: error,
+      message: error.message,
+    });
+  }
+};
