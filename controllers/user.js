@@ -12,7 +12,18 @@ module.exports.login = async function (req, res) {
       const password = bcrypt.compareSync(req.body.password, user.password);
       if (password) {
         const token = await jwt.sign(
-          { id: user.id, namaLengkap: user.namaLengkap, email: user.email },
+          {
+            id: user.id,
+            namaLengkap: user.namaLengkap,
+            email: user.email,
+            alamat: user.alamat,
+            provinsi: user.provinsi,
+            kabupatenKota: user.kabupatenKota,
+            kecamatan: user.kecamatan,
+            kelurahan: user.kelurahan,
+            kodePos: user.kodePos,
+            noTelp: user.noTelp,
+          },
           process.env.JWT_SECRET_TOKEN,
           { expiresIn: "1h" }
         );
@@ -28,6 +39,14 @@ module.exports.login = async function (req, res) {
           data: {
             id: user.id,
             email: user.email,
+            namaLengkap: user.namaLengkap,
+            alamat: user.alamat,
+            provinsi: user.provinsi,
+            kabupatenKota: user.kabupatenKota,
+            kecamatan: user.kecamatan,
+            kelurahan: user.kelurahan,
+            kodePos: user.kodePos,
+            noTelp: user.noTelp,
             token,
           },
         });
