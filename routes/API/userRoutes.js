@@ -7,7 +7,7 @@ userRoutes.post("/login", userController.login);
 userRoutes.post("/logout", userController.logout);
 userRoutes.post("/register", userController.register);
 userRoutes.get("/getUserData/:id", userController.getUserDetail);
-userRoutes.put(
+userRoutes.patch(
   "/editInformasiAkun",
   auth.checkLogin,
   userController.editInformasiAkun
