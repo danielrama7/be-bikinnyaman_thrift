@@ -34,3 +34,30 @@ module.exports.editStatus = async function (req, res) {
     });
   }
 };
+
+module.exports.getRiwayatPemesanan = async function (req, res) {
+  try {
+    const riwayatPemesananData = await db.riwayatPemesanan.findByPk(
+      req.params.id,
+      {
+        attributes: ["tanggal", "namaProduk", "jumlah", "total", "status"],
+      }
+    );
+    if (!riwayatPemesananData) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    return res.status(200).json({
+      sucess: true,
+      data: riwayatPemesananData,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      sucess: false,
+      error: error,
+      message: error.message,
+    });
+  }
+};

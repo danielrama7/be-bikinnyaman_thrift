@@ -8,5 +8,10 @@ riwayatPemesananRoutes.put(
   auth.checkLogin,
   riwayatPemesananController.editStatus
 );
+riwayatPemesananRoutes.get(
+  "/getRiwayatPemesanan/:id",
+  auth.checkLogin,
+  riwayatPemesananController.getRiwayatPemesanan
+);
 
 module.exports = riwayatPemesananRoutes;
