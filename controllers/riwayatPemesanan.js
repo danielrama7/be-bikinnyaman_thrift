@@ -37,12 +37,10 @@ module.exports.editStatus = async function (req, res) {
 
 module.exports.getRiwayatPemesanan = async function (req, res) {
   try {
-    const riwayatPemesananData = await db.riwayatPemesanan.findByPk(
-      req.params.id,
-      {
-        attributes: ["tanggal", "namaProduk", "jumlah", "total", "status"],
-      }
-    );
+    const riwayatPemesananData = await db.riwayatPemesanan.findAll({
+      attributes: ["tanggal", "namaProduk", "jumlah", "total", "status"],
+      where: { userId: req.params.id },
+    });
     if (!riwayatPemesananData) {
       return res.status(404).json({
         success: false,

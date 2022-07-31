@@ -10,7 +10,6 @@ riwayatPemesananRoutes.put(
 );
 riwayatPemesananRoutes.get(
   "/getRiwayatPemesanan/:id",
-  auth.checkLogin,
   riwayatPemesananController.getRiwayatPemesanan
 );
 
