@@ -11,6 +11,7 @@ const allowedOrigin = [
   "http://localhost:3000/",
   "http://localhost:3000",
   "https://bikinnyaman-thrift.vercel.app/",
+  "https://bikinnyaman-thrift.vercel.app",
 ];
 
 const corsOptions = {
