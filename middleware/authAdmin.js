@@ -1,4 +1,4 @@
-const checkLoginAdmin = (req, res, next) => {
+const checkLoginAdmin = async (req, res, next) => {
   const token = req.cookies.jwtAdmin;
   if (!token) {
     return res.status(401).json({
