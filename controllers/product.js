@@ -189,7 +189,8 @@ module.exports.editBarang = async function (req, res) {
   }
   try {
     const existBarang = await db.product.findOne({ where: { namaProduk } });
-    if (existBarang) {
+    const editedData = await db.product.findByPk(id);
+    if (existBarang && editData.namaProduk != editedData.namaProduk) {
       if (editData.gambarUtama) deleteCloudPicture(editData.gambarUtama);
       if (editData.gambar1) deleteCloudPicture(editData.gambar1);
       if (editData.gambar2) deleteCloudPicture(editData.gambar2);
@@ -200,8 +201,6 @@ module.exports.editBarang = async function (req, res) {
         message: "Nama barang sudah ada",
       });
     }
-
-    const editedData = await db.product.findByPk(id);
 
     if (!editedData) {
       return res.status(404).json({
