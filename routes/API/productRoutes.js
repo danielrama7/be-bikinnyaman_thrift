@@ -17,6 +17,7 @@ productRoutes.post(
   productController.createBarang
 );
 productRoutes.get("/getAllBarang", productController.getAllBarang);
+productRoutes.get("/getBarangWanita", productController.getBarangWanita);
 productRoutes.get("/getDetailBarang/:id", productController.getDetailBarang);
 productRoutes.put(
   "/editBarang/:id",

@@ -113,6 +113,46 @@ module.exports.getAllBarang = async function (req, res) {
   }
 };
 
+module.exports.getBarangWanita = async function (req, res) {
+  try {
+    const barang = await db.product.findAll({
+      where: { jenis: "Wanita" },
+      attributes: [
+        "id",
+        "namaProduk",
+        "deskripsi",
+        "jenis",
+        "harga",
+        "kategori",
+        "ukuran",
+        "warna",
+        "stok",
+        "gambarUtama",
+        "gambar1",
+        "gambar2",
+        "gambar3",
+        "gambar4",
+      ],
+    });
+    if (!barang) {
+      return res.status(404).json({
+        success: false,
+        message: "Barang not found",
+      });
+    }
+    return res.status(200).json({
+      sucess: true,
+      data: barang,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      sucess: false,
+      error: error,
+      message: error.message,
+    });
+  }
+};
+
 module.exports.getDetailBarang = async function (req, res) {
   try {
     const detailBarang = await db.product.findByPk(req.params.id, {
